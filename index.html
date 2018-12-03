@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"/>
+	<title>frank's blog</title>
+	<meta name="renderer" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+	<link rel="shortcut icon" href="favicon.ico">
+	<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="js/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+	<link href="css/index.css" rel="stylesheet"/>
+</head>
+<body>
+<header id="header"></header>
+<div id="logMain">
+	<div class="showImg showImg1">
+		<div class="webName"><h1>FRANK'S BLOG</h1></div>
+		<p class="webDes">experiences and ideas. 
+			<span id="go_down" title="文章导览">
+				<i class="fa fa-long-arrow-down"></i>
+			</span>
+		</p>
+	</div>
+	<div class="showImg showImg2"></div>
+	<div class="showImg showImg1"></div>
+	<div class="container">
+		<div id="articleHere"></div>
+		<div class="blog-box">
+			<div class="blog-title">
+				<a href="">Write Slack slash commands with Clime (TypeScript + Node.js)</a>
+			</div>
+			<div class="blog-section">
+				<p>Slack slash commands is one of the major interfaces interacting with a Slack integration. It is quite easy to integrate different functionalities with Slack slash commands. 
+					<a class="read-more" href="/2017/11/06/write-slack-slash-commands-with-clime/">»</a>
+				</p>
+			</div>
+			<div class="blog-footer">
+				<span class="tags">TypeScript</span>
+				<span class="tags">Node.js</span>
+				<span class="tags">Clime</span>
+				<span class="tags">Slack</span>
+				<time class="post-date" datetime="2017-11-06">06 November 2017</time>
+			</div>
+		</div>
+		<div class="blog-box">
+			<div class="blog-title">
+				<a href="">Write Slack slash commands with Clime (TypeScript + Node.js)</a>
+			</div>
+			<div class="blog-section">
+				<p>Slack slash commands is one of the major interfaces interacting with a Slack integration. It is quite easy to integrate different functionalities with Slack slash commands. 
+					<a class="read-more" href="/2017/11/06/write-slack-slash-commands-with-clime/">»</a>
+				</p>
+			</div>
+			<div class="blog-footer">
+				<span class="tags">TypeScript</span>
+				<span class="tags">Node.js</span>
+				<span class="tags">Clime</span>
+				<span class="tags">Slack</span>
+				<time class="post-date" datetime="2017-11-06">06 November 2017</time>
+			</div>
+		</div>
+		<div class="go-more" title="更多文章"><a href="">更多文章 &gt;&gt;</a></div>
+	</div>
+</div>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+	$(function(){
+	
+		$("#go_down").on("click", function(){
+			$('html,body').animate({
+				scrollTop:$('#articleHere').offset().top
+			}, 800);
+		})
+		
+	});
+</script>
+</body>
+</html>
