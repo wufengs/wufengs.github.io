@@ -7,6 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
 	<link rel="shortcut icon" href="favicon.ico">
 	<link href="js/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="js/toastr2.1.3/toastr.min.css" rel="stylesheet"/>
 	<link href="js/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 	<link href="css/index.css" rel="stylesheet"/>
 </head>
@@ -24,39 +25,41 @@
 	<div class="showImg showImg2"></div>
 	<div class="showImg showImg1"></div>
 	<div class="container">
-		<div id="articleHere"></div>
-		<div class="blog-box">
-			<div class="blog-title">
-				<a href="">Write Slack slash commands with Clime (TypeScript + Node.js)</a>
+		<div id="arriveHere"></div>
+		<div id="articles">
+			<div class="blog-box">
+				<div class="blog-title">
+					<a href="">Write Slack slash commands with Clime (TypeScript + Node.js)</a>
+				</div>
+				<div class="blog-section">
+					<p>Slack slash commands is one of the major interfaces interacting with a Slack integration. It is quite easy to integrate different functionalities with Slack slash commands. 
+						<a class="read-more" href="/2017/11/06/write-slack-slash-commands-with-clime/">»</a>
+					</p>
+				</div>
+				<div class="blog-footer">
+					<span>TypeScript,</span>
+					<span>Node.js,</span>
+					<span>Clime,</span>
+					<span>Slack</span>
+					<time class="post-date" datetime="2017-11-06">06 November 2017</time>
+				</div>
 			</div>
-			<div class="blog-section">
-				<p>Slack slash commands is one of the major interfaces interacting with a Slack integration. It is quite easy to integrate different functionalities with Slack slash commands. 
-					<a class="read-more" href="/2017/11/06/write-slack-slash-commands-with-clime/">»</a>
-				</p>
-			</div>
-			<div class="blog-footer">
-				<span class="tags">TypeScript</span>
-				<span class="tags">Node.js</span>
-				<span class="tags">Clime</span>
-				<span class="tags">Slack</span>
-				<time class="post-date" datetime="2017-11-06">06 November 2017</time>
-			</div>
-		</div>
-		<div class="blog-box">
-			<div class="blog-title">
-				<a href="">Write Slack slash commands with Clime (TypeScript + Node.js)</a>
-			</div>
-			<div class="blog-section">
-				<p>Slack slash commands is one of the major interfaces interacting with a Slack integration. It is quite easy to integrate different functionalities with Slack slash commands. 
-					<a class="read-more" href="/2017/11/06/write-slack-slash-commands-with-clime/">»</a>
-				</p>
-			</div>
-			<div class="blog-footer">
-				<span class="tags">TypeScript</span>
-				<span class="tags">Node.js</span>
-				<span class="tags">Clime</span>
-				<span class="tags">Slack</span>
-				<time class="post-date" datetime="2017-11-06">06 November 2017</time>
+			<div class="blog-box">
+				<div class="blog-title">
+					<a href="">Write Slack slash commands with Clime (TypeScript + Node.js)</a>
+				</div>
+				<div class="blog-section">
+					<p>Slack slash commands is one of the major interfaces interacting with a Slack integration. It is quite easy to integrate different functionalities with Slack slash commands. 
+						<a class="read-more" href="/2017/11/06/write-slack-slash-commands-with-clime/">»</a>
+					</p>
+				</div>
+				<div class="blog-footer">
+					<span>TypeScript,</span>
+					<span>Node.js,</span>
+					<span>Clime,</span>
+					<span>Slack</span>
+					<time class="post-date" datetime="2017-11-06">06 November 2017</time>
+				</div>
 			</div>
 		</div>
 		<div class="go-more" title="更多文章"><a href="">更多文章 &gt;&gt;</a></div>
@@ -65,16 +68,62 @@
 
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/toastr2.1.3/toastr.min.js"></script>
 
 <script>
 	$(function(){
-	
-		$("#go_down").on("click", function(){
-			$('html,body').animate({
-				scrollTop:$('#articleHere').offset().top
-			}, 800);
-		})
 		
+		indexInit();
+		handel();
+		
+		
+		function indexInit(){
+			$.ajax({
+				url: 'json/indexMunu.json',
+				type: 'GET',
+				dataType: 'json',
+				data: null,
+				success: function(resp){
+					if(resp == 200 || resp == '200'){
+						var articles_ele = $("#articles");
+						articles_ele.empty();
+						var articles_str = "";
+						
+						if(resp.data && resp.data.length>0){
+							for(var i=0; i<resp.data.length; i++){
+								articles_str += ''
+								+'<div class="blog-box">'
+								+'	<div class="blog-title"> <a href="'+resp.data[i].url+'">'+resp.data[i].title+'</a></div>'
+								+'	<div class="blog-section">'
+								+'		<p>'+resp.data[i].descrip+'<a class="read-more" href="'+resp.data[i].url+'">»</a></p>'
+								+'	</div>'
+								+'	<div class="blog-footer">'
+								+'		<span>'+resp.data[i].tags.toString()+'</span>'
+								+'		<time class="post-date" datetime="'+resp.data[i].dateTime+'">'+resp.data[i].date+'</time>'
+								+'	</div>'
+								+'</div>'
+							}
+							articles_ele.append(articles_str);
+						}
+						
+					}else{
+						toastr.warning(resp.message)
+					}
+				},
+				error: function(err){
+					console.log(err)
+				}
+			});
+		}
+		
+		function handel(){
+			// 平滑滚动
+			$("#go_down").on("click", function(){
+				$('html,body').animate({
+					scrollTop:$('#arriveHere').offset().top
+				}, 800);
+			});
+		}
 	});
 </script>
 </body>
