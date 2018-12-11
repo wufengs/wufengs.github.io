@@ -27,6 +27,7 @@
 	<div class="container">
 		<div id="arriveHere"></div>
 		<div id="articles">
+			<!--
 			<div class="blog-box">
 				<div class="blog-title">
 					<a href="">Write Slack slash commands with Clime (TypeScript + Node.js)</a>
@@ -44,21 +45,39 @@
 					<time class="post-date" datetime="2017-11-06">06 November 2017</time>
 				</div>
 			</div>
+			-->
 			<div class="blog-box">
 				<div class="blog-title">
-					<a href="">Write Slack slash commands with Clime (TypeScript + Node.js)</a>
+					<a href=""><div style="display:inline-block;height:48px;width:300px;background-color:#eee;"></div></a>
 				</div>
 				<div class="blog-section">
-					<p>Slack slash commands is one of the major interfaces interacting with a Slack integration. It is quite easy to integrate different functionalities with Slack slash commands. 
-						<a class="read-more" href="/2017/11/06/write-slack-slash-commands-with-clime/">»</a>
+					<p>
+						<div style="display:inline-block;height:24px;width:600px;background-color:#eee;"></div>
+						<a class="read-more" href="" style="color: #eee;">»</a>
 					</p>
 				</div>
 				<div class="blog-footer">
-					<span>TypeScript,</span>
-					<span>Node.js,</span>
-					<span>Clime,</span>
-					<span>Slack</span>
-					<time class="post-date" datetime="2017-11-06">06 November 2017</time>
+					<span><div style="display:inline-block;height:16px;width:60px;background-color:#eee;"></div></span>
+					<time class="post-date" datetime="时间">
+						<div style="display:inline-block;height:16px;width:120px;background-color:#eee;"></div>
+					</time>
+				</div>
+			</div>
+			<div class="blog-box">
+				<div class="blog-title">
+					<a href=""><div style="display:inline-block;height:48px;width:300px;background-color:#eee;"></div></a>
+				</div>
+				<div class="blog-section">
+					<p>
+						<div style="display:inline-block;height:24px;width:600px;background-color:#eee;"></div>
+						<a class="read-more" href="" style="color: #eee;">»</a>
+					</p>
+				</div>
+				<div class="blog-footer">
+					<span><div style="display:inline-block;height:16px;width:60px;background-color:#eee;"></div></span>
+					<time class="post-date" datetime="时间">
+						<div style="display:inline-block;height:16px;width:120px;background-color:#eee;"></div>
+					</time>
 				</div>
 			</div>
 		</div>
@@ -69,6 +88,7 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap/js/bootstrap.min.js"></script>
 <script src="js/toastr2.1.3/toastr.min.js"></script>
+<script src="json/menus.js"></script>
 
 <script>
 	$(function(){
@@ -76,44 +96,46 @@
 		indexInit();
 		handel();
 		
-		
 		function indexInit(){
-			$.ajax({
-				url: 'json/indexMunu.json',
-				type: 'GET',
-				dataType: 'json',
-				data: null,
-				success: function(resp){
-					if(resp == 200 || resp == '200'){
-						var articles_ele = $("#articles");
-						articles_ele.empty();
-						var articles_str = "";
-						
-						if(resp.data && resp.data.length>0){
-							for(var i=0; i<resp.data.length; i++){
-								articles_str += ''
-								+'<div class="blog-box">'
-								+'	<div class="blog-title"> <a href="'+resp.data[i].url+'">'+resp.data[i].title+'</a></div>'
-								+'	<div class="blog-section">'
-								+'		<p>'+resp.data[i].descrip+'<a class="read-more" href="'+resp.data[i].url+'">»</a></p>'
-								+'	</div>'
-								+'	<div class="blog-footer">'
-								+'		<span>'+resp.data[i].tags.toString()+'</span>'
-								+'		<time class="post-date" datetime="'+resp.data[i].dateTime+'">'+resp.data[i].date+'</time>'
-								+'	</div>'
-								+'</div>'
-							}
-							articles_ele.append(articles_str);
-						}
-						
-					}else{
-						toastr.warning(resp.message)
+			var menus = {
+				"status": 200,
+				"message": "success",
+				"menuList": [
+					{
+						"title": "javascript的 if 语法",
+						"descrip": "经常使用if(expression)这样的语句，本例子演示了expression的值是null，0，undefined，空字符串，空数组，空对象等时，if语句的执行情况。",
+						"url": "views/if-expression.html",
+						"tags": ["if语句"],
+						"date": "27 November 2018"
+					},
+					{
+						"title": "子元素高度一致",
+						"descrip": "父元素下有若干个子元素，当各子元素的高度不固定时（子元素高度由本身的内容自动扩展），可以使用三种方法保持子元素高度一致。",
+						"url": "views/the-same-height-dom.html",
+						"tags": ["flex", "padding", "margin", "table "],
+						"date": "27 November 2018"
 					}
-				},
-				error: function(err){
-					console.log(err)
+				]
+			}
+			var articles_str = "";
+			if(menus.menuList && menus.menuList.length>0){
+				for(var i=0; i<menus.menuList.length; i++){
+					articles_str += ''
+					+'<div class="blog-box">'
+					+'	<div class="blog-title"> <a href="'+menus.menuList[i].url+'">'+menus.menuList[i].title+'</a></div>'
+					+'	<div class="blog-section">'
+					+'		<p>'+menus.menuList[i].descrip+'<a class="read-more" href="'+menus.menuList[i].url+'">»</a></p>'
+					+'	</div>'
+					+'	<div class="blog-footer">'
+					+'		<span>'+menus.menuList[i].tags.toString()+'</span>'
+					+'		<time class="post-date" datetime="'+menus.menuList[i].dateTime+'">'+menus.menuList[i].date+'</time>'
+					+'	</div>'
+					+'</div>'
 				}
-			});
+				var articles_ele = $("#articles");
+				articles_ele.empty();
+				articles_ele.append(articles_str);
+			}
 		}
 		
 		function handel(){
