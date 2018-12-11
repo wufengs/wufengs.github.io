@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>if语句</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+	<!-- <link href="" rel="stylesheet"> -->
+	<style>
+	
+	</style>
+</head>
+
+<body>
+	<h1>if语句括号里的表达式的值的情况</h1>
+	<table border="1" cellspacing="0" cellpadding="10" width="512px" style="text-align: center;">
+		<tr>
+			<th>if语句</th>
+			<th>执行情况</th>
+		</tr>
+		<tr>
+			<td>if( "" )</td>
+			<td>不能执行</td>
+		</tr>
+		<tr>
+			<td>if( "" )</td>
+			<td>不能执行</td>
+		</tr>
+		<tr>
+			<td>if( NaN )</td>
+			<td>不能执行</td>
+		</tr>
+		<tr>
+			<td>if( null )</td>
+			<td>不能执行</td>
+		</tr>
+		<tr>
+			<td>if( undefined )</td>
+			<td>不能执行</td>
+		</tr>
+		<tr>
+			<td>if( 0 )</td>
+			<td>不能执行</td>
+		</tr>
+		<tr>
+			<td>if( -0 )</td>
+			<td>不能执行</td>
+		</tr>
+		<tr>
+			<td>if( Infinity )</td>
+			<td>能执行</td>
+		</tr>
+		<tr>
+			<td>if( -Infinity )</td>
+			<td>能执行</td>
+		</tr>
+		<tr>
+			<td>if( [] )</td>
+			<td>能执行</td>
+		</tr>
+		<tr>
+			<td>if( {} )</td>
+			<td>能执行</td>
+		</tr>
+	</table>
+	<p>可在控制台查看运行演示的结果</p>
+<script>
+	// if()括号里的值
+	var testIf = {
+		t_1 : {name: '""', value: ""} ,
+		t_2 : {name: "NaN", value: NaN} ,
+		t_4 : {name: "null", value: null},
+		t_6 : {name: "undefined", value: undefined},
+		t_8 : {name: "0", value: 0},
+		t_10 : {name: "-0", value: -0},
+		t_12 : {name: "Infinity", value: Infinity},
+		t_13 : {name: "-Infinity", value: -Infinity},
+		t_14 : {name: "[]", value: []},
+		t_15 : {name: "{}", value: {}},
+	}
+	for( var testIf_one in testIf){
+		if(testIf[testIf_one].value){
+			console.log('if( '+testIf[testIf_one].name+' )能执行');
+			
+		}else{
+			console.warn('if( '+testIf[testIf_one].name+' )不能执行');
+			
+		}
+	}
+</script>
+</body>
+</html>

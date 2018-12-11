@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>若干个子元素高度一致</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+  <!-- <link href="" rel="stylesheet"> -->
+	<style>
+    .red {
+      background: red;
+    }
+    .orange {
+      background: orange;
+    }
+    .blue {
+      background: blue;
+    }
+    #wrap0 {
+      width: 500px;
+      border: 1px solid green;
+      overflow: hidden;
+    }
+    .child0 {
+      float: left;
+      width: 100px;
+      word-break: break-all;
+      color: #fff;
+    }
+    /*方式一*/
+    #wrap1 {
+      display: flex;
+      flex-direction: row;
+      width: 500px;
+      border: 1px solid green;
+    }
+    .child1 {
+      width: 100px;
+      word-break: break-all;
+      color: #fff;
+    }
+    /*方式二*/
+    #wrap2 {
+      width: 500px;
+      border: 1px solid green;
+      overflow: hidden;
+    }
+    .child2 {
+      float: left;
+      width: 100px;
+      margin-bottom: -200px;
+      padding-bottom: 200px;
+      word-break: break-all;
+      color: #fff;
+    }
+    /*方式三*/
+  	#wrap3 {
+      display: table;
+      width: 500px;
+      border: 1px solid green;
+    }
+    .child3 {
+      display: table-cell;
+      width: 100px;
+      word-break: break-all;
+      color: #fff;
+    }
+	</style>
+</head>
+
+<body>
+  <h1>原始情况</h1>
+	<p>父元素下有若干个子元素，当各子元素的高度不固定时（子元素高度由本身的内容自动扩展），可以使用三种方法保持子元素高度一致。</p>
+  <p>例：3个子元素的高度不固定【即不设置父元素的height和子元素的height】</p>
+  <div id="wrap0">
+    <div class="child0 red">1111111111111</div>
+    <div class="child0 orange">22222222222222222222222222222222222222222222222222222222222222222222222</div>
+    <div class="child0 blue">333333</div>
+  </div>
+
+
+  <h1>方法一：flex布局</h1>
+  <p>在父元素使用display: flex。示例如下：</p>
+  <div id="wrap1">
+    <div class="child1 red">1111111111111</div>
+    <div class="child1 orange">22222222222222222222222222222222222222222222222222222222222222222222222</div>
+    <div class="child1 blue">333333</div>
+  </div>
+
+  <h1>方法二：padding-bottom，margin-bottom方法（障眼法）</h1>
+  <p>在父元素使用overflow: hidden;子元素先用padding-bottom设置一个大点的值（视情况而定），再用margin-bottom消除。示例如下：</p>
+  <div id="wrap2">
+    <div class="child2 red">1111111111111</div>
+    <div class="child2 orange">22222222222222222222222222222222222222222222222222222222222222222222222</div>
+    <div class="child2 blue">333333</div>
+  </div>
+  <div style="clear: both;"></div>
+
+  <h1>方法三：table布局</h1>
+  <p>在父元素使用display: table,子元素使用display: table-cell【宽度不受控制】。示例如下：</p>
+  <div id="wrap3">
+    <div class="child3 red">1111111111111</div>
+    <div class="child3 orange">22222222222222222222222222222222222222222222222222222222222222222222222</div>
+    <div class="child3 blue">333333</div>
+  </div>
+	
+<script>
+</script>
+
+</body>
+</html>
